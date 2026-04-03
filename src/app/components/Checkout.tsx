@@ -107,10 +107,11 @@ export function Checkout({ onOrderComplete }: CheckoutProps) {
         if (convertedProducts.length > 0) {
           setProducts(convertedProducts);
           // Pre-select first variant
+          const firstProduct = convertedProducts[0]!;
           setCheckoutState(prev => ({
             ...prev,
-            selectedVariantId: convertedProducts[0].variantId,
-            selectedSize: convertedProducts[0].size,
+            selectedVariantId: firstProduct.variantId,
+            selectedSize: firstProduct.size,
           }));
         } else {
           setProductError('No products available');
@@ -145,11 +146,12 @@ export function Checkout({ onOrderComplete }: CheckoutProps) {
       FIRST: subtotal * 0.15,
     };
 
-    if (validCodes[checkoutState.discountCode.toUpperCase()]) {
+    const discountAmount = validCodes[checkoutState.discountCode.toUpperCase()];
+    if (discountAmount) {
       setCheckoutState(prev => ({
         ...prev,
         discountApplied: true,
-        discountAmount: validCodes[checkoutState.discountCode.toUpperCase()],
+        discountAmount: discountAmount,
       }));
     } else {
       setCheckoutState(prev => ({
@@ -367,7 +369,7 @@ export function Checkout({ onOrderComplete }: CheckoutProps) {
                   <label className="flex items-start gap-3 cursor-pointer">
                     <Checkbox 
                       checked={checkoutState.termsAccepted}
-                      onCheckedChange={(checked) => setCheckoutState(prev => ({ ...prev, termsAccepted: checked as boolean }))}
+                      onCheckedChange={(checked: boolean | 'indeterminate') => setCheckoutState(prev => ({ ...prev, termsAccepted: checked === true }))}
                       className="mt-1"
                     />
                     <div className="flex-1 text-sm">
