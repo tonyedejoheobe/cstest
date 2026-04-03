@@ -10,7 +10,8 @@
     "moduleResolution": "bundler",
     "target": "esnext",
     // For nodejs:
-    // "lib": ["esnext"],
+    "lib": ["esnext"],
+    "types": ["node"],
     // "types": ["node"],
     // and npm install -D @types/node
 
