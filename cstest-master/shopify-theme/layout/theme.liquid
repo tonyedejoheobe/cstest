@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ description | escape }}">
+
+    {{ content_for_header }}
+
+    <!-- Tailwind CDN (for dev; replace with app.css bundle) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ 'app.css' | asset_url }}" rel="stylesheet">
+    <link href="{{ 'fonts.css' | asset_url }}" rel="stylesheet">
+    <!-- React Bundle - Replace hash with your vite build output -->
+<script>
+  window.ShopifyAssetUrls = {
+    kibble: "{{ '93ef747f6772a3fdaf73e5c2e849183565bd4fe0.png' | asset_url }}",
+    rawFood: "{{ '7c91e0c2df328ef98cb278616fe16887a5518c7f.png' | asset_url }}",
+    design1: "{{ '6136b8cbaf00668ccc9824e4a89f2de6355161fb.png' | asset_url }}",
+    design2: "{{ '9a4409f684a5519dabc916a48f3dd3616198aa78.gif' | asset_url }}",
+    design3: "{{ 'WA_1773150741173.jpeg' | asset_url }}"
+  };
+</script>
+<script type="module" src="{{ 'app.js' | asset_url }}" defer></script>
+    
+    <!-- Shopify Data for React -->
+    <script>
+      window.ShopifyData = {
+        cart: {{ cart | json }},
+        products: {{ collections['frontpage'].products | json | default: [] }},
+        collection: {{ collections['frontpage'] | json | default: null }}
+      };
+    </script>
+  </head>
+  <body>
+    <div id="root"><!-- React App mounts here --></div>
+  </body>
+</html>
