@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import { Leaf, Droplet, Award, Stethoscope, Shield } from 'lucide-react';
 import { FeatureCard } from './components/FeatureCard';
 import { StatCard } from './components/StatCard';
 import { CTAButton } from './components/CTAButton';
 import { ImageWithFallback } from "./components/ImageWithFallback";
 import { ImageComparisonSlider } from './components/ImageComparisonSlider';
+import { Checkout } from './components/Checkout';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { Breadcrumbs } from './components/Breadcrumbs';
+import { OrderConfirmation } from './components/OrderConfirmation';
+import { TestimonialCard } from './components/TestimonialCard';
 import kibbleImage from "../assets/93ef747f6772a3fdaf73e5c2e849183565bd4fe0.png";
 import rawFoodImage from "../assets/7c91e0c2df328ef98cb278616fe16887a5518c7f.png";
 import designImage1 from "../assets/6136b8cbaf00668ccc9824e4a89f2de6355161fb.png";
@@ -11,8 +18,35 @@ import designImage2 from "../assets/9a4409f684a5519dabc916a48f3dd3616198aa78.gif
 import designImage3 from "../assets/WA_1773150741173.jpeg";
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'checkout' | 'confirmation'>('home');
+  
+  if (currentPage === 'checkout') {
+    return (
+      <>
+        <Header currentPage="checkout" onHomeClick={() => setCurrentPage('home')} />
+        <div className="max-w-6xl mx-auto px-4 md:px-6 pt-4 pb-8">
+          <Breadcrumbs items={[{ label: 'Checkout', active: true }]} />
+        </div>
+        <Checkout onOrderComplete={() => setCurrentPage('confirmation')} />
+        <Footer />
+      </>
+    );
+  }
+
+  if (currentPage === 'confirmation') {
+    return (
+      <>
+        <Header currentPage="confirmation" onHomeClick={() => setCurrentPage('home')} />
+        <OrderConfirmation onBackHome={() => setCurrentPage('home')} />
+        <Footer />
+      </>
+    );
+  }
+
   return (
-    <main className="bg-white min-h-screen">
+    <div className="flex flex-col min-h-screen">
+      <Header currentPage="home" onCheckoutClick={() => setCurrentPage('checkout')} onHomeClick={() => setCurrentPage('home')} />
+      <main className="bg-white flex-1">
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20">
         <div className="text-center mb-12 md:mb-16">
@@ -116,7 +150,12 @@ export default function App() {
 
         {/* CTA Button */}
         <div className="flex flex-col items-center gap-4 mt-8">
-          <CTAButton text="Get your dog a healthy meal today!" />
+          <button
+            onClick={() => setCurrentPage('checkout')}
+            className="bg-[#FF7A59] hover:bg-[#ff6844] text-white font-semibold px-6 md:px-8 py-3 md:py-4 rounded-md transition-colors duration-200 text-sm md:text-base w-full md:w-auto max-w-md"
+          >
+            Get your dog a healthy meal today!
+          </button>
           
           {/* Money Back Guarantee */}
           <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -127,7 +166,7 @@ export default function App() {
       </section>
 
       {/* Nutrition Foundation Section */}
-      <section className="bg-gray-50 py-12 md:py-20">
+      <section id="about" className="bg-gray-50 py-12 md:py-20">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left Content */}
@@ -158,7 +197,12 @@ export default function App() {
               </div>
 
               <div className="flex justify-center lg:justify-start">
-                <CTAButton text="Give your furry friend the gift of wholesome nutrition" />
+                <button
+                  onClick={() => setCurrentPage('checkout')}
+                  className="bg-[#FF7A59] hover:bg-[#ff6844] text-white font-semibold px-6 md:px-8 py-3 md:py-4 rounded-md transition-colors duration-200 text-sm md:text-base w-full md:w-auto max-w-md"
+                >
+                  Give your furry friend the gift of wholesome nutrition
+                </button>
               </div>
             </div>
 
@@ -225,6 +269,88 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="bg-gray-50 py-12 md:py-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Loved by dog owners</h2>
+            <p className="text-gray-600 text-lg">See what our happy customers are saying</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <TestimonialCard
+              quote="My dog's energy levels have completely transformed! His coat is shinier and he's more playful than ever. Highly recommend!"
+              author="Sarah Mitchell"
+              title="Golden Retriever Owner"
+              rating={5}
+            />
+            <TestimonialCard
+              quote="We switched from kibble to this raw food and the difference is night and day. Our vet even noticed the improvement in his health checkup."
+              author="James Chen"
+              title="Labrador Owner"
+              rating={5}
+            />
+            <TestimonialCard
+              quote="Best decision we made for our dog's health. The quality ingredients and vet-developed formula give us peace of mind."
+              author="Emily Rodriguez"
+              title="Dachshund Owner"
+              rating={5}
+            />
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-gray-600 mb-4">Join thousands of happy dogs and their owners</p>
+            <button
+              onClick={() => setCurrentPage('checkout')}
+              className="bg-[#FF7A59] hover:bg-[#ff6844] text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
+            >
+              Start Your Dog's Journey Today
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-12 md:py-20">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16">Frequently Asked Questions</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">How is the food stored?</h3>
+              <p className="text-gray-700">Our raw dog food comes frozen for maximum freshness. Simply store in your freezer and thaw portions as needed.</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Is it suitable for all ages?</h3>
+              <p className="text-gray-700">Our formula is designed for adult dogs. For puppies, please consult with your veterinarian about appropriate portions.</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">What if my dog doesn't like it?</h3>
+              <p className="text-gray-700">We offer a 31-day money-back guarantee. If your dog doesn't love it, we'll refund your purchase—no questions asked.</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Can I transition from kibble?</h3>
+              <p className="text-gray-700">Yes! We recommend a gradual transition over 7-10 days, mixing increasing amounts of raw food with their current food.</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Do you offer subscription?</h3>
+              <p className="text-gray-700">Absolutely! Our Subscribe & Save program offers 15% off and convenient auto-delivery to your door.</p>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">What about shipping?</h3>
+              <p className="text-gray-700">We ship frozen overnight to ensure freshness. Free shipping on orders over $100!</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+    <Footer />
+    </div>
   );
 }
