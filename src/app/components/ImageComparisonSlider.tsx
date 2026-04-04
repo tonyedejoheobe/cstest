@@ -11,9 +11,9 @@ export function ImageComparisonSlider({ baseImage, overlayImage, className = '' 
   const containerRef = useRef<HTMLDivElement>(null);
 
   const updatePosition = (clientX: number) => {
-    if (!containerRef.current) return;
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
     
-    const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     const percentage = (x / rect.width) * 100;
     
@@ -46,6 +46,7 @@ export function ImageComparisonSlider({ baseImage, overlayImage, className = '' 
       ref={containerRef}
       className={`relative overflow-hidden cursor-col-resize touch-none ${className}`}
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => setSliderPosition(50)}
       onMouseLeave={handleMouseLeave}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -72,6 +73,7 @@ export function ImageComparisonSlider({ baseImage, overlayImage, className = '' 
             width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%',
             objectPosition: 'left center'
           }}
+          draggable={false}
         />
       </div>
 

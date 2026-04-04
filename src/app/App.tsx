@@ -56,7 +56,7 @@ export default function App() {
 
         {/* Features Grid with Central Image - Desktop */}
         <div className="hidden md:block relative max-w-5xl mx-auto mb-16">
-          <div className="grid grid-cols-2 gap-x-32 gap-y-24 items-center">
+          <div className="grid grid-cols-2 gap-x-40 gap-y-28 items-center pb-8">
             {/* Top Left - Real Food */}
             <div className="flex justify-end">
               <FeatureCard
@@ -99,7 +99,7 @@ export default function App() {
           </div>
 
           {/* Central Circular Image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full overflow-hidden shadow-2xl border-8 border-white">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full overflow-hidden shadow-2xl border-8 border-white hover:scale-105 transition-transform duration-300 hover:shadow-3xl">
             <ImageComparisonSlider
               baseImage={kibbleImage}
               overlayImage={rawFoodImage}
@@ -111,7 +111,7 @@ export default function App() {
         {/* Features Mobile Layout */}
         <div className="md:hidden mb-12">
           {/* Central Image First on Mobile */}
-          <div className="w-56 h-56 mx-auto rounded-full overflow-hidden shadow-2xl border-8 border-white mb-8">
+          <div className="w-56 h-56 mx-auto rounded-full overflow-hidden shadow-2xl border-8 border-white mb-12 hover:scale-105 transition-transform duration-300 hover:shadow-3xl bg-gray-200">
             <ImageComparisonSlider
               baseImage={kibbleImage}
               overlayImage={rawFoodImage}
