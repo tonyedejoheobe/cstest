@@ -1,26 +1,57 @@
-# Vite Errors Fix - TODO Steps
+# Shopify Theme Conversion TODO
 
-## Plan Breakdown (Approved by user):
-1. ~~Clear Vite cache~~ (done: `rm -rf node_modules/.vite`)
-2. ~~Install @vitejs/plugin-react-oxc~~ (skipped: Vite 8 incompatible, keeping @vitejs/plugin-react)
-3. Update vite.config.ts:
-   - Rename rollupOptions → rolldownOptions
-   - Add optimizeDeps.include: ['lucide-react']
-4. User: Stop dev server (Ctrl+C) and restart with `npm run dev -- --force`
-5. Verify: No resolution errors, lucide-react icons render, Tailwind styles work
-6. attempt_completion
+## Goal: Convert React landing+checkout to Shopify theme w/ identical UI/animations via React bundle.
 
-**All steps complete!**
+**Current status**: Partial hybrid setup in `cstest-master/shopify-theme/`.
 
-## Summary:
-- Vite cache cleared
-- vite.config.ts updated: added `optimizeDeps.include: ['lucide-react']`, `rollupOptions` → `rolldownOptions`
-- Installed `@types/node` (fixes path/__dirname TS errors)
-- Ready for user to test:
+## Steps:
 
-1. Stop current dev server (Ctrl+C in terminal)
-2. Run `npm run dev -- --force`
-3. Check http://localhost:5173/ - errors should be gone, lucide icons & Tailwind work
+### 1. Build React App [x]
+- ✓ npm run build
+- ✓ Copy bundles/images to assets/
+- Run `npm run build`
+- Copy dist/assets/* to shopify-theme/assets/
+- Note bundle hashes for theme.liquid
 
-**Task complete - use attempt_completion next**
+### 2. Complete Theme Structure [ ]
+- Create sections/: hero.liquid, checkout.liquid, etc. (render React props?)
+- snippets/: header.liquid, footer.liquid
+- templates/index.liquid: {% section 'hero' %} {% section 'stats' %} etc.
+
+### 3. Migrate Assets [x]
+- ✓ Images to assets/
+- ✓ app.css/js
+- fonts.css (empty, optional)
+- Copy src/assets/* → shopify-theme/assets/
+- Build Tailwind CSS → assets/app.css
+- Copy fonts/icons SVGs
+
+### 4. Update theme.liquid [ ]
+- Inject {{ cart | json }}, {{ collections.frontpage.products | json }}
+- Reference correct app.js/css hashes
+- Add Tailwind CDN + custom CSS
+
+### 5. Pure Liquid Components [ ]
+- header.liquid, footer.liquid from React
+- Product cards, CTAs as snippets
+- AJAX cart JS (no React CartContext, use Shopify Cart API)
+
+### 6. Animations/Interactivity [ ]
+- Vanilla JS for ImageComparisonSlider
+- Tailwind transitions (hover:scale)
+- GSAP or CSS for React-like animations
+
+### 7. Checkout Integration [ ]
+- Custom checkout form → Shopify checkout links
+- Line item properties for addons
+- Discount codes via cart attributes
+
+### 8. Testing & Package [ ]
+- `shopify theme push`
+- Create zip or GitHub repo w/ theme files
+- Add README w/ setup (add products to 'frontpage')
+
+**Progress**: Steps 1,3 [x] - Assets ready!
+
+Next step: Execute step 1 (build React app).
 

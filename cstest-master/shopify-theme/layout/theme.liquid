@@ -11,8 +11,7 @@
 
     {{ content_for_header }}
 
-    <!-- Tailwind CDN (for dev; replace with app.css bundle) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS included in app.css bundle -->
     <link href="{{ 'app.css' | asset_url }}" rel="stylesheet">
     <link href="{{ 'fonts.css' | asset_url }}" rel="stylesheet">
     <!-- React Bundle - Replace hash with your vite build output -->
