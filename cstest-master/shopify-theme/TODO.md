@@ -1,1 +1,15 @@
-# Shopify Theme Validation Fix - Progress Tracker&#10;&#10;## Plan Steps:&#10;1. [x] Created TODO.md&#10;2. [ ] Update layout/theme.liquid with theme header comment&#10;3. [ ] Fix config/settings_schema.json with valid schema&#10;4. [ ] Create templates/index.liquid&#10;5. [ ] Create templates/product.liquid and templates/product.json&#10;6. [ ] Create sections/header.liquid and sections/footer.liquid&#10;7. [ ] Create locales/en.default.json&#10;8. [ ] Initialize git in shopify-theme/ and commit changes&#10;9. [ ] Test validation with Shopify CLI&#10;10. [ ] Push to Shopify store&#10;&#10;**Next:** Updating core files for validation.
+# Shopify Theme Validation Fix - Progress Tracker
+
+## Approved Plan Steps:
+1. [x] Fix config/settings_schema.json - set valid theme name and complete schema structure
+ 2. [x] Update layout/theme.liquid - add theme identification comment
+3. [x] Update this TODO.md with completion status
+4. [ ] Test with Shopify CLI: `shopify theme validate`
+5. [ ] Original TODO items (already partially done):
+   - [x] Created TODO.md
+    - [x] Update layout/theme.liquid with theme header comment  
+   - [x] Fix config/settings_schema.json with valid schema
+   - [ ] ... (rest unchanged)
+
+**Status:** Theme files fixed. Ready for Shopify CLI validation: cd cstest-master/shopify-theme && shopify theme validate
+
