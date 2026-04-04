@@ -1,0 +1,8 @@
+<div class="product-main">
+  <h1>{{ product.title }}</h1>
+  <p>{{ product.description }}</p>
+  {% for variant in product.variants %}
+    <p>{{ variant.title }} - {{ variant.price | money }}</p>
+  {% endfor %}
+  {{ form | payment_button }}
+</div>

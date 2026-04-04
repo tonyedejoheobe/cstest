@@ -1,1 +1,14 @@
-{&#10;  "current": {}&#10;}
+{
+  "current": {
+    "color_background": "#f8fafc",
+    "color_scheme": "background-1",
+    "heading_scale": 1.6
+  },
+  "presets": {
+    "Cstest Theme": {
+      "color_background": "#f8fafc",
+      "color_scheme": "background-1",
+      "heading_scale": 1.6
+    }
+  }
+}
