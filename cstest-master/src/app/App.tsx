@@ -11,13 +11,13 @@ import { Footer } from './components/Footer';
 import { Breadcrumbs } from './components/Breadcrumbs';
 import { OrderConfirmation } from './components/OrderConfirmation';
 import { TestimonialCard } from './components/TestimonialCard';
-const kibbleImage = window.ShopifyAssetUrls?.kibble || '../assets/93ef747f6772a3fdaf73e5c2e849183565bd4fe0.png';
-const rawFoodImage = window.ShopifyAssetUrls?.rawFood || '../assets/7c91e0c2df328ef98cb278616fe16887a5518c7f.png';
-const designImage1 = window.ShopifyAssetUrls?.design1 || '../assets/6136b8cbaf00668ccc9824e4a89f2de6355161fb.png';
-const designImage2 = window.ShopifyAssetUrls?.design2 || '../assets/9a4409f684a5519dabc916a48f3dd3616198aa78.gif';
-const designImage3 = window.ShopifyAssetUrls?.design3 || '../assets/WA_1773150741173.jpeg';
+const kibbleImage = window.ShopifyAssetUrls?.kibble || '93ef747f6772a3fdaf73e5c2e849183565bd4fe0.png';
+const rawFoodImage = window.ShopifyAssetUrls?.rawFood || '7c91e0c2df328ef98cb278616fe16887a5518c7f.png';
+const designImage1 = window.ShopifyAssetUrls?.design1 || '6136b8cbaf00668ccc9824e4a89f2de6355161fb.png';
+const designImage2 = window.ShopifyAssetUrls?.design2 || '9a4409f684a5519dabc916a48f3dd3616198aa78.gif';
+const designImage3 = window.ShopifyAssetUrls?.design3 || 'WA_1773150741173.jpeg';
 
-const shopifyData = (window as any).ShopifyData || { cart: [], products: [] };
+const shopifyData = window.ShopifyData || { cart: [], products: [] };
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'checkout' | 'confirmation'>('home');
@@ -25,9 +25,13 @@ export default function App() {
   if (currentPage === 'checkout') {
     return (
       <>
-        <Header currentPage="checkout" onHomeClick={() => setCurrentPage('home')} />
+        <Header currentPage="checkout" onHomeClick={() => setCurrentPage('home')} onCheckoutClick={() => setCurrentPage('checkout')} />
         <div className="max-w-6xl mx-auto px-4 md:px-6 pt-4 pb-8">
-          <Breadcrumbs items={[{ label: 'Checkout', active: true }]} />
+        <Breadcrumbs items={[
+          { label: 'Checkout', active: true, href: '#' },
+          { label: 'Order Summary', active: false }
+        ]} />
+
         </div>
         <Checkout onOrderComplete={() => setCurrentPage('confirmation')} />
         <Footer />
@@ -38,7 +42,7 @@ export default function App() {
   if (currentPage === 'confirmation') {
     return (
       <>
-        <Header currentPage="confirmation" onHomeClick={() => setCurrentPage('home')} />
+        <Header currentPage="confirmation" onHomeClick={() => setCurrentPage('home')} onCheckoutClick={() => setCurrentPage('checkout')} />
         <OrderConfirmation onBackHome={() => setCurrentPage('home')} />
         <Footer />
       </>

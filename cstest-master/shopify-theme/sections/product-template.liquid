@@ -1,0 +1,8 @@
+<div class="product-template">
+  <h1>{{ product.title }}</h1>
+  {{ product.description }}
+  <div class="price">{{ product.price | money }}</div>
+  {{ form | payment_button }}
+</div>
+
+{% section 'main-product' %}

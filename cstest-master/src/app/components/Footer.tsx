@@ -35,27 +35,27 @@ export function Footer() {
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Shop</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/collections/raw-dog-food" className="hover:text-[#FF7A59] transition">
                   Raw Dog Food
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/collections/supplements" className="hover:text-[#FF7A59] transition">
                   Supplements
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/collections/accessories" className="hover:text-[#FF7A59] transition">
                   Accessories
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/collections/recipes" className="hover:text-[#FF7A59] transition">
                   Recipes
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/collections/subscribe-save" className="hover:text-[#FF7A59] transition">
                   Subscribe & Save
                 </a>
               </li>
@@ -67,27 +67,27 @@ export function Footer() {
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/contact" className="hover:text-[#FF7A59] transition">
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/faq" className="hover:text-[#FF7A59] transition">
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/shipping" className="hover:text-[#FF7A59] transition">
                   Shipping Info
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/returns" className="hover:text-[#FF7A59] transition">
                   Returns
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/track-order" className="hover:text-[#FF7A59] transition">
                   Track Order
                 </a>
               </li>
@@ -99,22 +99,22 @@ export function Footer() {
             <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Company</h4>
             <ul className="space-y-2 text-sm mb-6">
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/about" className="hover:text-[#FF7A59] transition">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/blogs/news" className="hover:text-[#FF7A59] transition">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/careers" className="hover:text-[#FF7A59] transition">
                   Careers
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/pages/press" className="hover:text-[#FF7A59] transition">
                   Press
                 </a>
               </li>
@@ -153,13 +153,13 @@ export function Footer() {
             <p>&copy; {currentYear} Happy Dog Bites. All rights reserved.</p>
           </div>
           <div className="flex justify-center gap-4">
-            <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/policies/privacy-policy" className="hover:text-[#FF7A59] transition">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/policies/terms-of-service" className="hover:text-[#FF7A59] transition">
               Terms of Service
             </a>
-            <a href="#" className="hover:text-[#FF7A59] transition">
+<a href="/policies/cookie-policy" className="hover:text-[#FF7A59] transition">
               Cookie Policy
             </a>
           </div>
